@@ -1,0 +1,10 @@
+<% include partials/header %>
+<div class="login-form">
+	<h1>Prisijungti</h1>
+	<form action="auth" method="POST">
+		<input type="text" name="username" placeholder="Prisijungimo vardas" required>
+		<input type="password" name="password" placeholder="Slaptažodis" required>
+		<input type="submit">
+	</form>
+</div>
+<% include partials/footer %>
