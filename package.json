@@ -1,9 +1,15 @@
 {
   "name": "peva-apskaita",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.15.1",
+    "npm": "6.4.1"
+  },
   "description": "Peva apskaita",
   "main": "app.js",
   "scripts": {
+    "heroku-postbuild": "npm install --production",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dominykas Valutis",
@@ -15,7 +21,6 @@
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "install": "^0.12.2",
-    "mysql": "^2.17.1",
-    "nodemon": "^1.19.0"
+    "mysql": "^2.17.1"
   }
 }
