@@ -217,12 +217,24 @@
       <div class="form-inline my-3">
         <label for="pavadinimas" class="mr-3">Taškas</label>
         <select class="form-control" id="pavadinimas" name="pavadinimas">
-          <option value="Centras">Centras</option>
-          <option value="Banga">Banga</option>
-          <option value="Pliazas">Pliažas</option>
-          <option value="Zydroji">Žydroji</option>
-          <option value="Palanga">Palanga</option>
-          <option value="Sventes">Šventės</option>
+          <% if (result[0].pavadinimas == 'Centras'){%>
+            <option value="Centras">Centras</option>
+            <% }%>
+            <% if (result[0].pavadinimas == 'Banga'){%>
+            <option value="Banga">Banga</option>
+            <% }%>
+            <% if (result[0].pavadinimas == 'Pliazas'){%>
+            <option value="Pliazas">Pliažas</option>
+            <% }%>
+            <% if (result[0].pavadinimas == 'Zydroji'){%>
+            <option value="Zydroji">Žydroji</option>
+            <% }%>
+            <% if (result[0].pavadinimas == 'Palanga'){%>
+            <option value="Palanga">Palanga</option>
+            <% }%>
+            <% if (result[0].pavadinimas == 'Sventes'){%>
+            <option value="Sventes">Šventės</option>
+            <% }%>
         </select>
       </div>
       <div class="form-inline my-3">
