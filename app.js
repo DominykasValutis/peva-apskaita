@@ -34,10 +34,10 @@ app.use(function(req, res, next){
     next();
 });
 
-pool.connect(function(error) {
-    if(error) throw error;
-    console.log('Database connection established...');
-});
+// pool.connect(function(error) {
+//     if(error) throw error;
+//     console.log('Database connection established...');
+// });
 
 // Prisijungimo puslapis
 app.get('/', (req, res) => {
