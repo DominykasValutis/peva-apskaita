@@ -9,7 +9,7 @@ const 	mysql = require('mysql'),
 		app = express();
 
 // Duombazes prisijungimas
-const pool = mysql.createPool({
+const connection = mysql.createConnection({
 	host     : 'eu-cdbr-west-02.cleardb.net',
 	user     : 'ba7638b3ca6abe',
 	password : '7f48e2ab',
@@ -34,10 +34,10 @@ app.use(function(req, res, next){
     next();
 });
 
-// pool.connect(function(error) {
-//     if(error) throw error;
-//     console.log('Database connection established...');
-// });
+connection.connect(function(error) {
+    if(error) throw error;
+    console.log('Database connection established...');
+});
 
 // Prisijungimo puslapis
 app.get('/', (req, res) => {
@@ -49,7 +49,7 @@ app.post('/auth', (request, response) => {
 	var username = request.body.username;
 	var password = request.body.password;
 	if (username && password) {
-		pool.query('SELECT * FROM `heroku_c2c7cbf8250f549`.`acc` WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+		connection.query('SELECT * FROM `heroku_c2c7cbf8250f549`.`acc` WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.username = username;
@@ -68,7 +68,7 @@ app.post('/auth', (request, response) => {
 
 app.get('/pagrindinis', (req, res) => {
 	if (req.session.loggedin) {
-		pool.query('select * from heroku_c2c7cbf8250f549.taskas as t inner join heroku_c2c7cbf8250f549.gauta as g where g.pavadinimas = t.pavadinimas;', function(error, results, fields) {
+		connection.query('select * from heroku_c2c7cbf8250f549.taskas as t inner join heroku_c2c7cbf8250f549.gauta as g where g.pavadinimas = t.pavadinimas;', function(error, results, fields) {
             if (error) throw error;
             const result = results;
 			console.log(result);
@@ -83,7 +83,7 @@ app.get('/pagrindinis', (req, res) => {
 app.get('/apskaita/:id', (req, res) => {
     if (req.session.loggedin) {
 		const id = req.params.id;
-		pool.query('select * from heroku_c2c7cbf8250f549.taskas as t inner join heroku_c2c7cbf8250f549.gauta as g inner join heroku_c2c7cbf8250f549.nuimta as n inner join heroku_c2c7cbf8250f549.nuimta_pradzia as p where g.pavadinimas = (?) and t.pavadinimas = (?) and n.pavadinimas = (?) and p.pavadinimas = (?) and n.id = p.id', 
+		connection.query('select * from heroku_c2c7cbf8250f549.taskas as t inner join heroku_c2c7cbf8250f549.gauta as g inner join heroku_c2c7cbf8250f549.nuimta as n inner join heroku_c2c7cbf8250f549.nuimta_pradzia as p where g.pavadinimas = (?) and t.pavadinimas = (?) and n.pavadinimas = (?) and p.pavadinimas = (?) and n.id = p.id', 
 		[id, id, id, id], 
 		function(error, result) {
 			if (error) throw error;
@@ -92,7 +92,7 @@ app.get('/apskaita/:id', (req, res) => {
 				res.render('apskaita', {result: result});
 				console.log(id);
 			} else {
-				pool.query('select * from heroku_c2c7cbf8250f549.taskas as t inner join heroku_c2c7cbf8250f549.gauta as g where g.pavadinimas = (?) and t.pavadinimas = (?)', [id, id], function(error, result) {
+				connection.query('select * from heroku_c2c7cbf8250f549.taskas as t inner join heroku_c2c7cbf8250f549.gauta as g where g.pavadinimas = (?) and t.pavadinimas = (?)', [id, id], function(error, result) {
 					res.render('apskaita', {result: result});
 					console.log(id);
 				});
@@ -117,14 +117,14 @@ app.post('/apskaita/:id', (req, res) => {
 	const gerimai15 = req.body.gerimai5;
 	const gerimai2 = req.body.gerimai2;
 	const id = req.params.id;
-	pool.query(
+	connection.query(
 		'UPDATE `heroku_c2c7cbf8250f549`.`taskas` SET minkstiledai = minkstiledai + (?), kabinamiledaivnt = kabinamiledaivnt + (?), kabinamiledai = kabinamiledai + (?), serbetas = serbetas + (?), stiklines02 = stiklines02 + (?), stiklines03 = stiklines03 + (?), stiklines05 = stiklines05 + (?), kava = kava + (?), vafliutesla = vafliutesla + (?), gerimai1 = gerimai1 + (?), gerimai15 = gerimai15 + (?), gerimai2 = gerimai2 + (?) WHERE tasko_ID = (?)', 
 	[pilstomiLedai, kabinamiLedaiVnt, kabinamiLedai, serbetas, stiklines02, stiklines03, stiklines05, kava, vafliuTesla, gerimai, gerimai15, gerimai2, id],
 	function(error, result) {
 		if(error) throw error;
 		console.log(id);
 	});
-	pool.query(
+	connection.query(
 		'UPDATE `heroku_c2c7cbf8250f549`.`atvezta` SET atveztaMinksti = atveztaMinksti + (?), atveztaKabinamiledaivnt = atveztaKabinamiledaivnt + (?), atveztaKabinami = atveztaKabinami + (?), atveztaSerbetas = atveztaSerbetas + (?), atveztaStiklines02 = atveztaStiklines02 + (?), atveztaStiklines03 = atveztaStiklines03 + (?), atveztaStiklines05 = atveztaStiklines05 + (?), atveztaKava = atveztaKava + (?), atveztaVafliutesla = atveztaVafliutesla + (?), atveztaGerimai1 = atveztaGerimai1 + (?), atveztaGerimai15 = atveztaGerimai15 + (?), atveztaGerimai2 = atveztaGerimai2 + (?) WHERE tasko_ID = (?)', 
 	[pilstomiLedai, kabinamiLedaiVnt, kabinamiLedai, serbetas, stiklines02, stiklines03, stiklines05, kava, vafliuTesla, gerimai, gerimai15, gerimai2, id], 
 	function(error, result) {
@@ -150,19 +150,19 @@ app.post('/nuemimas/:id', (req,res) => {
 	const pavadinimas = req.body.pavadinimas;
 	const data = req.body.data;
 	const id = req.params.id;
-	pool.query(
+	connection.query(
 		'INSERT INTO heroku_c2c7cbf8250f549.nuimta (nuimtaMinksti, nuimtaKabinamiledaivnt, nuimtaKabinami, nuimtaSerbetas, nuimtaStiklines02, nuimtaStiklines03, nuimtaStiklines05, nuimtaKava, nuimtaVafliutesla, nuimtaGerimai1, nuimtaGerimai15, nuimtaGerimai2, pavadinimas, data) VALUES ((?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?), (?));',
 		[pilstomiLedai, kabinamiLedaiVnt, kabinamiLedai, serbetas, stiklines02, stiklines03, stiklines05, kava, vafliuTesla, gerimai1, gerimai15, gerimai2, pavadinimas, data],
 		function(error, result) {
 			if (error) throw error;
 		});
-		pool.query(
+		connection.query(
 		'insert into heroku_c2c7cbf8250f549.nuimta_pradzia (nuimta_pradziaMinksti, nuimta_pradziaKabinamiledaivnt, nuimta_pradziaKabinami, nuimta_pradziaSerbetas, nuimta_pradziaStiklines02, nuimta_pradziaStiklines03, nuimta_pradziaStiklines05, nuimta_pradziaKava, nuimta_pradziaVafliutesla, nuimta_pradziaGerimai1, nuimta_pradziaGerimai15, nuimta_pradziaGerimai2, pavadinimas) select atveztaMinksti, atveztaKabinamiledaivnt, atveztaKabinami, atveztaSerbetas, atveztaStiklines02, atveztaStiklines03, atveztaStiklines05, atveztaKava, atveztaVafliutesla, atveztaGerimai1, atveztaGerimai15, atveztaGerimai2, pavadinimas from heroku_c2c7cbf8250f549.atvezta where heroku_c2c7cbf8250f549.atvezta.tasko_ID = (?)',
 		[id], function(error, result) {
 			if (error) throw error;
 			console.log(result);
 		});
-		pool.query('UPDATE `heroku_c2c7cbf8250f549`.`atvezta` SET atveztaMinksti = 0, atveztaKabinamiledaivnt = 0, atveztaKabinami = 0, atveztaSerbetas = 0, atveztaStiklines02 = 0, atveztaStiklines03 = 0, atveztaStiklines05 = 0, atveztaKava = 0, atveztaVafliutesla = 0, atveztaGerimai1 = 0, atveztaGerimai15 = 0, atveztaGerimai2 = 0 WHERE tasko_ID = (?)',
+		connection.query('UPDATE `heroku_c2c7cbf8250f549`.`atvezta` SET atveztaMinksti = 0, atveztaKabinamiledaivnt = 0, atveztaKabinami = 0, atveztaSerbetas = 0, atveztaStiklines02 = 0, atveztaStiklines03 = 0, atveztaStiklines05 = 0, atveztaKava = 0, atveztaVafliutesla = 0, atveztaGerimai1 = 0, atveztaGerimai15 = 0, atveztaGerimai2 = 0 WHERE tasko_ID = (?)',
 	[id], function(error, result) {
 		if (error) throw error;
 		console.log(result);
