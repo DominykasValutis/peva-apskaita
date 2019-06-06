@@ -56,7 +56,7 @@ app.post('/auth', (request, response) => {
 				response.redirect('/pagrindinis');
 			} else {
 				request.flash("error", "Neteisingas prisijungimo vardas arba slaptažodis!");
-				response.redirect('/apskaita');
+				response.redirect('/');
 			}			
 			response.end();
 		});
