@@ -9,12 +9,37 @@ const 	mysql = require('mysql'),
 		app = express();
 
 // Duombazes prisijungimas
-const connection = mysql.createConnection({
+var db_config = {
 	host     : 'eu-cdbr-west-02.cleardb.net',
 	user     : 'ba7638b3ca6abe',
 	password : '7f48e2ab',
 	database : 'heroku_c2c7cbf8250f549'
-});
+};
+
+var connection;
+
+function handleDisconnect() {
+  connection = mysql.createConnection(db_config); // Recreate the connection, since
+                                                  // the old one cannot be reused.
+
+  connection.connect(function(err) {              // The server is either down
+    if(err) {                                     // or restarting (takes a while sometimes).
+      console.log('error when connecting to db:', err);
+      setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
+    }                                     // to avoid a hot loop, and to allow our node script to
+  });                                     // process asynchronous requests in the meantime.
+                                          // If you're also serving http, display a 503 error.
+  connection.on('error', function(err) {
+    console.log('db error', err);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
+      handleDisconnect();                         // lost due to either server restart, or a
+    } else {                                      // connnection idle timeout (the wait_timeout
+      throw err;                                  // server variable configures this)
+    }
+  });
+}
+
+handleDisconnect();
 
 app.use(session({
 	secret: 'secret',
@@ -32,11 +57,6 @@ app.use(function(req, res, next){
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
     next();
-});
-
-connection.connect(function(error) {
-    if(error) throw error;
-    console.log('Database connection established...');
 });
 
 // Prisijungimo puslapis
