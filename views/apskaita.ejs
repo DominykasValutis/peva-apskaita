@@ -78,25 +78,25 @@
             <th scope="row">Minkšti ledai, kg</th>
             <td><%= result[0].gauta_minkstiledai %></td>
             <td><%= result[0].minkstiledai %></td>
-            <td><%= (Number(result[0].gauta_minkstiledai) + Number(result[0].minkstiledai))*14 %> &euro;</td>
+            <td><%= (Number(result[0].gauta_minkstiledai) + Number(result[0].minkstiledai))*10 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Kabinamų dėžutės, vnt</th>
             <td><%= result[0].gauta_kabinamiledaivnt %></td>
             <td><%= result[0].kabinamiledaivnt %></td>
-            <td><%= (Number(result[0].gauta_kabinamiledaivnt) + Number(result[0].kabinamiledaivnt))*60 %> &euro;</td>
+            <td><%= (Number(result[0].gauta_kabinamiledaivnt) + Number(result[0].kabinamiledaivnt))*55 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Kabinami ledai, kg</th>
             <td><%= result[0].gauta_kabinamiledai %></td>
             <td><%= result[0].kabinamiledai %></td>
-            <td><%= (Number(result[0].gauta_kabinamiledai) + Number(result[0].kabinamiledai))* 22.22 %> &euro;</td>
+            <td><%= (Number(result[0].gauta_kabinamiledai) + Number(result[0].kabinamiledai))* 19.64 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Šerbetas, l</th>
             <td><%= result[0].gauta_serbetas %></td>
             <td><%= result[0].serbetas %></td>
-            <td><%= (Number(result[0].gauta_serbetas) + Number(result[0].serbetas))*5 %> &euro;</td>
+            <td><%= (Number(result[0].gauta_serbetas) + Number(result[0].serbetas))*30 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Stiklinės 0.2, vnt</th>
@@ -248,7 +248,7 @@
     <% if(result[0].nuimtaMinksti) {%>
     <% result.forEach(function(result) {%>
       <h6>Nuėmimo data: <%= result.data %></h6>
-      <table class="table table-dark table-striped" id="table">
+      <table class="table table-dark table-striped">
       <thead>
           <tr>
             <th scope="col">#</th>
@@ -262,25 +262,25 @@
             <th scope="row">Minkšti ledai, kg</th>
             <td><%= result.nuimta_pradziaMinksti %></td>
             <td><%= result.nuimtaMinksti %></td>
-            <td><%= (Number(result.nuimta_pradziaMinksti) - Number(result.nuimtaMinksti))*14 %> &euro;</td>
+            <td><%= (Number(result.nuimta_pradziaMinksti) - Number(result.nuimtaMinksti))*10 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Kabinamų dėžutės, vnt</th>
             <td><%= result.nuimta_pradziaKabinamiledaivnt %></td>
             <td><%= result.nuimtaKabinamiledaivnt %></td>
-            <td><%= (Number(result.nuimta_pradziaKabinamiledaivnt) - Number(result.nuimtaKabinamiledaivnt))*60 %> &euro;</td>
+            <td><%= (Number(result.nuimta_pradziaKabinamiledaivnt) - Number(result.nuimtaKabinamiledaivnt))*55 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Kabinami ledai, kg</th>
             <td><%= result.nuimta_pradziaKabinami %></td>
             <td><%= result.nuimtaKabinami %></td>
-            <td><%= (Number(result.nuimta_pradziaKabinami) - Number(result.nuimtaKabinami))*22.22 %> &euro;</td>
+            <td><%= (Number(result.nuimta_pradziaKabinami) - Number(result.nuimtaKabinami))*19.64 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Šerbetas, l</th>
             <td><%= result.nuimta_pradziaSerbetas %></td>
             <td><%= result.nuimtaSerbetas %></td>
-            <td><%= (Number(result.nuimta_pradziaSerbetas) - Number(result.nuimtaSerbetas))*5 %> &euro;</td>
+            <td><%= (Number(result.nuimta_pradziaSerbetas) - Number(result.nuimtaSerbetas))*30 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Stiklinės 0.2, vnt</th>
@@ -338,6 +338,7 @@
           <% }%>
         </tbody>
       </table>
+      <span class="val"></span>
       <br>
       <% })%>
       <% }%>

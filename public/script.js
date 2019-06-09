@@ -16,3 +16,21 @@ for (let i = 1; i < table.rows.length; i++) {
     }
 }
 document.getElementById('val1').innerHTML = 'Iš viso suprekiauta (šerbetas stiklinėmis): ' + sumVal1 + ' &euro;';
+
+const tab = document.getElementsByClassName('table');
+const val = document.getElementsByClassName('val');
+const copy = [];
+Object.entries(tab).forEach((el) => {
+    const table = el[1];
+    let sum = 0
+    for (let i = 1; i < table.rows.length; i++) {
+        sum = sum + parseFloat(table.rows[i].cells[3].innerHTML);
+    }
+    copy.push(sum);
+});
+
+const template = '<p> Iš viso suprekiauta ~id~ &euro;';
+
+for (i = 0; i < tab.length; i++) {
+    tab[i].insertAdjacentHTML('afterend', template.replace(/~id~/g, copy[i]));
+}
