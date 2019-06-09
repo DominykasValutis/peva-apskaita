@@ -17,7 +17,7 @@ for (let i = 1; i < table.rows.length; i++) {
 }
 document.getElementById('val1').innerHTML = 'Iš viso suprekiauta (šerbetas stiklinėmis): ' + sumVal1 + ' &euro;';
 
-const tab = document.getElementsByClassName('table');
+const tab = document.getElementsByClassName('apsk');
 const val = document.getElementsByClassName('val');
 const copy = [];
 Object.entries(tab).forEach((el) => {
@@ -29,7 +29,7 @@ Object.entries(tab).forEach((el) => {
     copy.push(sum);
 });
 
-const template = '<p> Iš viso suprekiauta ~id~ &euro;';
+const template = '<p class="font-weight-bold text-success"> Iš viso suprekiauta ~id~ &euro;';
 
 for (i = 0; i < tab.length; i++) {
     tab[i].insertAdjacentHTML('afterend', template.replace(/~id~/g, copy[i]));
