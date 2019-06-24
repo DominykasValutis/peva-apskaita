@@ -58,6 +58,10 @@
           <label for="gerimai2" class="mr-3">Gėrimai, kurių kaina 1.7 &euro;, vnt</label>
           <input type="number" class="form-control" name="gerimai2" id="gerimai2" step="1">
         </div>
+        <div class="form-inline my-3">
+          <label for="gerimai21" class="mr-3">Gėrimai, kurių kaina 2 &euro;, vnt</label>
+          <input type="number" class="form-control" name="gerimai21" id="gerimai21" step="1">
+        </div>
         <% }%>
         <% if (result[0].pavadinimas == 'Banga' || result[0].pavadinimas == 'Pliazas' || result[0].pavadinimas == 'Sventes'){%>
         <div class="form-inline my-3">
@@ -94,58 +98,49 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Gauta pradžioje</th>
-            <th scope="col">Atvežta</th>
+            <th scope="col">Gauta</th>
             <th scope="col">Suprekiauta</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th scope="row">Minkšti ledai, kg</th>
-            <td><%= result[0].gauta_minkstiledai %></td>
             <td><%= result[0].minkstiledai %></td>
             <td><%= (Number(result[0].gauta_minkstiledai) + Number(result[0].minkstiledai))*10 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Kabinamų dėžutės, vnt</th>
-            <td><%= result[0].gauta_kabinamiledaivnt %></td>
             <td><%= result[0].kabinamiledaivnt %></td>
             <td><%= (Number(result[0].gauta_kabinamiledaivnt) + Number(result[0].kabinamiledaivnt))*55 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Kabinami ledai, kg</th>
-            <td><%= result[0].gauta_kabinamiledai %></td>
             <td><%= result[0].kabinamiledai %></td>
             <td><%= (Number(result[0].gauta_kabinamiledai) + Number(result[0].kabinamiledai))* 19.64 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Šerbeto sirupas, l</th>
-            <td><%= result[0].gauta_serbetas %></td>
             <td><%= result[0].serbetas %></td>
             <td><%= (Number(result[0].gauta_serbetas) + Number(result[0].serbetas))*30 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Stiklinės 0.2, vnt</th>
-            <td><%= result[0].gauta_stiklines02 %></td>
             <td><%= result[0].stiklines02 %></td>
             <td><%= (Number(result[0].gauta_stiklines02) + Number(result[0].stiklines02))*1.2 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Stiklinės 0.3, vnt</th>
-            <td><%= result[0].gauta_stiklines03 %></td>
             <td><%= result[0].stiklines03 %></td>
             <td><%= (Number(result[0].gauta_stiklines03) + Number(result[0].stiklines03))*1.5 %> &euro;</td>
           </tr>
           <tr>
-            <th scope="row">Stiklinės 0.5, vnt</th>
-            <td><%= result[0].gauta_stiklines05 %></td>
+            <th scope="row">Stiklinės 0.4, vnt</th>
             <td><%= result[0].stiklines05 %></td>
             <td><%= (Number(result[0].gauta_stiklines05) + Number(result[0].stiklines05))*2 %> &euro;</td>
           </tr>
           <% if (result[0].pavadinimas == 'Palanga' || result[0].pavadinimas == 'Zydroji' || result[0].pavadinimas == 'Sventes'){%>
             <tr>
               <th scope="row">Kava, kg</th>
-              <td><%= result[0].gautaKava %></td>
               <td><%= result[0].kava %></td>
               <td><%= (Number(result[0].gautaKava) + Number(result[0].kava))*160 %> &euro;</td>
             </tr>
@@ -153,67 +148,62 @@
           <% if (result[0].pavadinimas == 'Centras' || result[0].pavadinimas == 'Zydroji'){%>
             <tr>
               <th scope="row">Vaflių tešla, kg</th>
-              <td><%= result[0].gautaVafliutesla %></td>
               <td><%= result[0].vafliutesla %></td>
-              <td><%= (Number(result[0].gautaVafliutesla) + Number(result[0].vafliutesla))*30 %> &euro;</td>
+              <td><%= (Number(result[0].gautaVafliutesla) + Number(result[0].vafliutesla))*35 %> &euro;</td>
             </tr>
           <% }%>
           <% if (result[0].pavadinimas == 'Banga' || result[0].pavadinimas == 'Zydroji' || result[0].pavadinimas == 'Palanga' || result[0].pavadinimas == 'Sventes'){%>
           <tr>
             <th scope="row">Gėrimai, kurių kaina 1 &euro;, vnt</th>
-            <td><%= result[0].gautaGerimai1 %></td>
             <td><%= result[0].gerimai1 %></td>
             <td><%= (Number(result[0].gautaGerimai1) + Number(result[0].gerimai1))*1 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Gėrimai, kurių kaina 1.5 &euro;, vnt</th>
-            <td><%= result[0].gautaGerimai15 %></td>
             <td><%= result[0].gerimai15 %></td>
             <td><%= (Number(result[0].gerimai15) + Number(result[0].gautaGerimai15))*1.5 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Gėrimai, kurių kaina 1.7 &euro;, vnt</th>
-            <td><%= result[0].gautaGerimai2 %></td>
             <td><%= result[0].gerimai2 %></td>
             <td><%= (Number(result[0].gerimai2) + Number(result[0].gautaGerimai2))*1.7 %> &euro;</td>
+          </tr>
+          <tr>
+            <th scope="row">Gėrimai, kurių kaina 2 &euro;, vnt</th>
+            <td><%= result[0].gerimai21 %></td>
+            <td><%= (Number(result[0].gerimai21) + Number(result[0].gautaGerimai21))*2 %> &euro;</td>
           </tr>
           <% }%>
           <% if (result[0].pavadinimas == 'Banga' || result[0].pavadinimas == 'Pliazas' || result[0].pavadinimas == 'Sventes'){%>
           <tr>
             <th scope="row">Fasuoti kaina 1 &euro;, vnt</th>
-            <td><%= result[0].gautaFasuoti1 %></td>
             <td><%= result[0].fasuoti1 %></td>
             <td><%= (Number(result[0].gautaFasuoti1) + Number(result[0].fasuoti1))*1 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Fasuoti kaina 1.2 &euro;, vnt</th>
-            <td><%= result[0].gautaFasuoti12 %></td>
             <td><%= result[0].fasuoti12 %></td>
             <td><%= (Number(result[0].gautaFasuoti12) + Number(result[0].fasuoti12))*1.2 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Fasuoti kaina 1.5 &euro;, vnt</th>
-            <td><%= result[0].gautaFasuoti15 %></td>
             <td><%= result[0].fasuoti15 %></td>
             <td><%= (Number(result[0].gautaFasuoti15) + Number(result[0].fasuoti15))*1.5 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Fasuoti kaina 1.7 &euro;, vnt</th>
-            <td><%= result[0].gautaFasuoti17 %></td>
             <td><%= result[0].fasuoti17 %></td>
             <td><%= (Number(result[0].gautaFasuoti17) + Number(result[0].fasuoti17))*1.7 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Fasuoti kaina 2 &euro;, vnt</th>
-            <td><%= result[0].gautaFasuoti2 %></td>
             <td><%= result[0].fasuoti2 %></td>
             <td><%= (Number(result[0].gautaFasuoti2) + Number(result[0].fasuoti2))*2 %> &euro;</td>
           </tr>
           <tr>
             <th scope="row">Fasuoti kaina 2.5 &euro;, vnt</th>
-            <td><%= result[0].gautaFasuoti25 %></td>
             <td><%= result[0].fasuoti25 %></td>
-            <td><%= (Number(result[0].gautaFasuoti25) + Number(result[0].fasuoti25))*25 %> &euro;</td>
+            <td><%= (Number(result[0].gautaFasuoti25) + Number(result[0].fasuoti25))*2.5 %> &euro;</td>
           </tr>
           <% }%>
         </tbody>
@@ -276,6 +266,10 @@
       <div class="form-inline my-3">
         <label for="nuimtaGerimai2" class="mr-3">Gėrimai, kurių kaina 1.7 &euro;, vnt</label>
         <input type="number" class="form-control" name="nuimtaGerimai2" id="nuimtaGerimai2" step="1">
+      </div>
+      <div class="form-inline my-3">
+        <label for="nuimtaGerimai21" class="mr-3">Gėrimai, kurių kaina 2 &euro;, vnt</label>
+        <input type="number" class="form-control" name="nuimtaGerimai21" id="nuimtaGerimai21" step="1">
       </div>
       <% }%>
       <% if (result[0].pavadinimas == 'Banga' || result[0].pavadinimas == 'Pliazas' || result[0].pavadinimas == 'Sventes'){%>
@@ -403,7 +397,7 @@
             <th scope="row">Vaflių tešla, kg</th>
             <td><%= result.nuimta_pradziaVafliutesla %></td>
             <td><%= result.nuimtaVafliutesla %></td>
-            <td><%= (Number(result.nuimta_pradziaVafliutesla) - Number(result.nuimtaVafliutesla))*160 %> &euro;</td>
+            <td><%= (Number(result.nuimta_pradziaVafliutesla) - Number(result.nuimtaVafliutesla))*35 %> &euro;</td>
           </tr>
           <% }%>
           <% if (result.pavadinimas == 'Banga' || result.pavadinimas == 'Zydroji' || result.pavadinimas == 'Palanga' || result.pavadinimas == 'Sventes'){%>
@@ -425,6 +419,11 @@
             <td><%= result.nuimtaGerimai2 %></td>
             <td><%= (Number(result.nuimta_pradziaGerimai2) - Number(result.nuimtaGerimai2))*1.7 %> &euro;</td>
           </tr>
+          <th scope="row">Gėrimai, kurių kaina 2 &euro;, vnt</th>
+          <td><%= result.nuimta_pradziaGerimai21 %></td>
+          <td><%= result.nuimtaGerimai21 %></td>
+          <td><%= (Number(result.nuimta_pradziaGerimai21) - Number(result.nuimtaGerimai21))*2 %> &euro;</td>
+        </tr>
           <% }%>
           <% if (result.pavadinimas == 'Banga' || result.pavadinimas == 'Pliazas' || result.pavadinimas == 'Sventes'){%>
           <tr>
@@ -461,7 +460,7 @@
             <th scope="row">Fasuoti kaina 2.5 &euro;, vnt</th>
             <td><%= result.nuimta_pradziaFasuoti25 %></td>
             <td><%= result.nuimtaFasuoti25 %></td>
-            <td><%= (Number(result.nuimta_pradziaFasuoti25) - Number(result.nuimtaFasuoti25))*25 %> &euro;</td>
+            <td><%= (Number(result.nuimta_pradziaFasuoti25) - Number(result.nuimtaFasuoti25))*2.5 %> &euro;</td>
           </tr>
           <% }%>
         </tbody>
