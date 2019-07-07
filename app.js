@@ -190,14 +190,14 @@ app.post('/nuemimas/:id', (req,res) => {
 		function(error, result) {
 			if (error) throw error;
 		});
-		connection.query(
+	connection.query(
 		'insert into heroku_c2c7cbf8250f549.nuimta_pradzia (nuimta_pradziaMinksti, nuimta_pradziaKabinamiledaivnt, nuimta_pradziaKabinami, nuimta_pradziaSerbetas, nuimta_pradziaStiklines02, nuimta_pradziaStiklines03, nuimta_pradziaStiklines05, nuimta_pradziaKava, nuimta_pradziaVafliutesla, nuimta_pradziaGerimai1, nuimta_pradziaGerimai15, nuimta_pradziaGerimai2,  nuimta_pradziaGerimai21, nuimta_pradziaFasuoti1, nuimta_pradziaFasuoti12, nuimta_pradziaFasuoti15, nuimta_pradziaFasuoti17, nuimta_pradziaFasuoti2, nuimta_pradziaFasuoti25, pavadinimas) select atveztaMinksti, atveztaKabinamiledaivnt, atveztaKabinami, atveztaSerbetas, atveztaStiklines02, atveztaStiklines03, atveztaStiklines05, atveztaKava, atveztaVafliutesla, atveztaGerimai1, atveztaGerimai15, atveztaGerimai2, atveztaGerimai21, atveztaFasuoti1, atveztaFasuoti12, atveztaFasuoti15, atveztaFasuoti17, atveztaFasuoti2, atveztaFasuoti25, pavadinimas from heroku_c2c7cbf8250f549.atvezta where heroku_c2c7cbf8250f549.atvezta.tasko_ID = (?)',
 		[id], function(error, result) {
 			if (error) throw error;
 			console.log(result);
 		});
-		connection.query('UPDATE `heroku_c2c7cbf8250f549`.`atvezta` SET atveztaMinksti = 0, atveztaKabinamiledaivnt = 0, atveztaKabinami = 0, atveztaSerbetas = 0, atveztaStiklines02 = 0, atveztaStiklines03 = 0, atveztaStiklines05 = 0, atveztaKava = 0, atveztaVafliutesla = 0, atveztaGerimai1 = 0, atveztaGerimai15 = 0, atveztaGerimai2 = 0, atveztaGerimai21 = 0 atveztaFasuoti1 = 0, atveztaFasuoti12 = 0, atveztaFasuoti15 = 0, atveztaFasuoti17 = 0, atveztaFasuoti2 = 0, atveztaFasuoti25 = 0 WHERE tasko_ID = (?)',
-	[id], function(error, result) {
+	connection.query('UPDATE `heroku_c2c7cbf8250f549`.`atvezta` SET atveztaMinksti = (?), atveztaKabinami = (?), atveztaKabinamiledaivnt = (?), atveztaSerbetas = (?), atveztaStiklines02 = (?), atveztaStiklines03 = (?), atveztaStiklines05 = (?), atveztaKava = (?), atveztaVafliutesla = (?), atveztaGerimai1 = (?), atveztaGerimai15 = (?), atveztaGerimai2 = (?), atveztaGerimai21 = (?), atveztaFasuoti1 = (?), atveztaFasuoti12 = (?), atveztaFasuoti15 = (?), atveztaFasuoti17 = (?), atveztaFasuoti2 = (?), atveztaFasuoti25 = (?) WHERE tasko_ID = (?)',
+		[pilstomiLedai, kabinamiLedai, kabinamiLedaiVnt, serbetas, stiklines02, stiklines03, stiklines05, kava, vafliuTesla, gerimai1, gerimai15, gerimai2, gerimai21, fasuoti1, fasuoti12, fasuoti15, fasuoti17, fasuoti2, fasuoti25, id], function(error, result) {
 		if (error) throw error;
 		console.log(result);
 	});

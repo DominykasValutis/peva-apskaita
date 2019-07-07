@@ -24,7 +24,7 @@ Object.entries(tab).forEach((el) => {
     const table = el[1];
     let sum = 0
     for (let i = 1; i < table.rows.length; i++) {
-        sum = sum + parseFloat(table.rows[i].cells[2].innerHTML);
+        sum = sum + parseFloat(table.rows[i].cells[3].innerHTML);
     }
     copy.push(sum);
 });
