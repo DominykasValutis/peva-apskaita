@@ -33,7 +33,7 @@
           <label for="stiklines05" class="mr-3">Stiklinės 0.4, vnt</label>
           <input type="number" class="form-control" name="stiklines05" id="stiklines05" step="1">
         </div>
-        <% if (result[0].pavadinimas == 'Palanga' || result[0].pavadinimas == 'Zydroji' || result[0].pavadinimas == 'Sventes'){%>
+        <% if (result[0].pavadinimas == 'Palanga' || result[0].pavadinimas == 'Zydroji' || result[0].pavadinimas == 'Sventes' || result[0].pavadinimas == 'Palapine'){%>
           <div class="form-inline my-3">
               <label for="kava" class="mr-3">Kava, kg</label>
               <input type="number" class="form-control" name="kava" id="kava" step="0.01">
@@ -51,7 +51,7 @@
           <input type="number" class="form-control" name="gerimai1" id="gerimai1" step="1">
         </div>
         <div class="form-inline my-3">
-          <label for="gerimai5" class="mr-3">Gėrimai, kurių kaina 1.5 &euro;, Tiche 1l, vnt</label>
+          <label for="gerimai5" class="mr-3">Gėrimai, kurių kaina 1.5 &euro;, 1l, vnt</label>
           <input type="number" class="form-control" name="gerimai5" id="gerimai5" step="1">
         </div>
         <div class="form-inline my-3">
@@ -89,6 +89,54 @@
           <input type="number" class="form-control" name="fasuoti25" id="fasuoti25" step="1">
         </div>
         <% }%>
+        <% if (result[0].pavadinimas == 'Palapine'){%>
+          <div class="form-inline my-3">
+            <label for="gerimai1" class="mr-3">Gėrimai, kurių kaina 1 &euro;, vnt</label>
+            <input type="number" class="form-control" name="gerimai1" id="gerimai1" step="1">
+          </div>
+          <div class="form-inline my-3">
+            <label for="gerimai5" class="mr-3">Gėrimai, kurių kaina 1.7 &euro;, vnt</label>
+            <input type="number" class="form-control" name="gerimai5" id="gerimai5" step="1">
+          </div>
+          <div class="form-inline my-3">
+            <label for="gerimai2" class="mr-3">Gėrimai, kurių kaina 2 &euro;, vnt</label>
+            <input type="number" class="form-control" name="gerimai2" id="gerimai2" step="1">
+          </div>
+          <div class="form-inline my-3">
+            <label for="gerimai21" class="mr-3">Gėrimai, kurių kaina 2.2 &euro;, vnt</label>
+            <input type="number" class="form-control" name="gerimai21" id="gerimai21" step="1">
+          </div>
+          <div class="form-inline my-3">
+            <label for="gerimai35" class="mr-3">Gėrimai, kurių kaina 3.5 &euro;, vnt</label>
+            <input type="number" class="form-control" name="gerimai35" id="gerimai35" step="1">
+          </div>
+          <% }%>
+          <% if (result[0].pavadinimas == 'Palapine'){%>
+            <div class="form-inline my-3">
+              <label for="fasuoti1" class="mr-3">Fasuoti kaina 1.2 &euro;, vnt</label>
+              <input type="number" class="form-control" name="fasuoti1" id="fasuoti1" step="1">
+            </div>
+            <div class="form-inline my-3">
+              <label for="fasuoti12" class="mr-3">Fasuoti kaina 1.4 &euro;, vnt</label>
+              <input type="number" class="form-control" name="fasuoti12" id="fasuoti12" step="1">
+            </div>
+            <div class="form-inline my-3">
+              <label for="fasuoti15" class="mr-3">Fasuoti kaina 1.7 &euro;, vnt</label>
+              <input type="number" class="form-control" name="fasuoti15" id="fasuoti15" step="1">
+            </div>
+            <div class="form-inline my-3">
+              <label for="fasuoti17" class="mr-3">Fasuoti kaina 1.9 &euro;, vnt</label>
+              <input type="number" class="form-control" name="fasuoti17" id="fasuoti17" step="1">
+            </div>
+            <div class="form-inline my-3">
+              <label for="fasuoti2" class="mr-3">Fasuoti kaina 2.2 &euro;, vnt</label>
+              <input type="number" class="form-control" name="fasuoti2" id="fasuoti2" step="1">
+            </div>
+            <div class="form-inline my-3">
+              <label for="fasuoti25" class="mr-3">Fasuoti kaina 2.7 &euro;, vnt</label>
+              <input type="number" class="form-control" name="fasuoti25" id="fasuoti25" step="1">
+            </div>
+            <% }%>
         <input type="submit" value="Pateikti">
     </form>
     </div>
@@ -206,6 +254,65 @@
             <td><%= (Number(result[0].gautaFasuoti25) + Number(result[0].fasuoti25))*2.5 %> &euro;</td>
           </tr>
           <% }%>
+          <% if (result[0].pavadinimas == 'Palapine'){%>
+            <tr>
+              <th scope="row">Gėrimai, kurių kaina 1 &euro;, vnt</th>
+              <td><%= result[0].gerimai1 %></td>
+              <td><%= (Number(result[0].gautaGerimai1) + Number(result[0].gerimai1))*1 %> &euro;</td>
+            </tr>
+            <tr>
+              <th scope="row">Gėrimai, kurių kaina 1.7 &euro;, vnt</th>
+              <td><%= result[0].gerimai15 %></td>
+              <td><%= (Number(result[0].gerimai15) + Number(result[0].gautaGerimai15))*1.7 %> &euro;</td>
+            </tr>
+            <tr>
+              <th scope="row">Gėrimai, kurių kaina 2 &euro;, vnt</th>
+              <td><%= result[0].gerimai2 %></td>
+              <td><%= (Number(result[0].gerimai2) + Number(result[0].gautaGerimai2))*2 %> &euro;</td>
+            </tr>
+            <tr>
+              <th scope="row">Gėrimai, kurių kaina 2.2 &euro;, vnt</th>
+              <td><%= result[0].gerimai21 %></td>
+              <td><%= (Number(result[0].gerimai21) + Number(result[0].gautaGerimai21))*2.2 %> &euro;</td>
+            </tr>
+            <tr>
+              <th scope="row">Gėrimai, kurių kaina 3.5 &euro;, vnt</th>
+              <td><%= result[0].gerimai35 %></td>
+              <td><%= (Number(result[0].gerimai35) + Number(result[0].gautaGerimai35))*3.5 %> &euro;</td>
+            </tr>
+            <% }%>
+            <% if (result[0].pavadinimas == 'Palapine'){%>
+              <tr>
+                <th scope="row">Fasuoti kaina 1.2 &euro;, vnt</th>
+                <td><%= result[0].fasuoti1 %></td>
+                <td><%= (Number(result[0].gautaFasuoti1) + Number(result[0].fasuoti1))*1.2 %> &euro;</td>
+              </tr>
+              <tr>
+                <th scope="row">Fasuoti kaina 1.4 &euro;, vnt</th>
+                <td><%= result[0].fasuoti12 %></td>
+                <td><%= (Number(result[0].gautaFasuoti12) + Number(result[0].fasuoti12))*1.4 %> &euro;</td>
+              </tr>
+              <tr>
+                <th scope="row">Fasuoti kaina 1.7 &euro;, vnt</th>
+                <td><%= result[0].fasuoti15 %></td>
+                <td><%= (Number(result[0].gautaFasuoti15) + Number(result[0].fasuoti15))*1.7 %> &euro;</td>
+              </tr>
+              <tr>
+                <th scope="row">Fasuoti kaina 1.9 &euro;, vnt</th>
+                <td><%= result[0].fasuoti17 %></td>
+                <td><%= (Number(result[0].gautaFasuoti17) + Number(result[0].fasuoti17))*1.9 %> &euro;</td>
+              </tr>
+              <tr>
+                <th scope="row">Fasuoti kaina 2.2 &euro;, vnt</th>
+                <td><%= result[0].fasuoti2 %></td>
+                <td><%= (Number(result[0].gautaFasuoti2) + Number(result[0].fasuoti2))*2.2 %> &euro;</td>
+              </tr>
+              <tr>
+                <th scope="row">Fasuoti kaina 2.7 &euro;, vnt</th>
+                <td><%= result[0].fasuoti25 %></td>
+                <td><%= (Number(result[0].gautaFasuoti25) + Number(result[0].fasuoti25))*2.7 %> &euro;</td>
+              </tr>
+              <% }%>
         </tbody>
       </table>
       <p><span class="font-weight-bold" id="val"></span></p>
@@ -245,13 +352,13 @@
       <% if (result[0].pavadinimas == 'Palanga' || result[0].pavadinimas == 'Zydroji' || result[0].pavadinimas == 'Sventes'){%>
         <div class="form-inline my-3">
             <label for="nuimtaKava" class="mr-3">Kava, kg</label>
-            <input type="number" class="form-control" name="nuimtaKava" id="nuimtaKava" step="1">
+            <input type="number" class="form-control" name="nuimtaKava" id="nuimtaKava" step="0.01">
           </div>
       <% }%>
       <% if (result[0].pavadinimas == 'Centras' || result[0].pavadinimas == 'Zydroji'){%>
         <div class="form-inline my-3">
             <label for="nuimtaVafliutesla" class="mr-3">Vaflių tešla, kg</label>
-            <input type="number" class="form-control" name="nuimtaVafliutesla" id="nuimtaVafliutesla" step="1">
+            <input type="number" class="form-control" name="nuimtaVafliutesla" id="nuimtaVafliutesla" step="0.01">
           </div>
       <% }%>
       <% if (result[0].pavadinimas == 'Banga' || result[0].pavadinimas == 'Zydroji' || result[0].pavadinimas == 'Palanga' || result[0].pavadinimas == 'Sventes'){%>
@@ -298,6 +405,54 @@
         <input type="number" class="form-control" name="nuimtaFasuoti25" id="nuimtaFasuoti25" step="1">
       </div>
       <% }%>
+      <% if (result[0].pavadinimas == 'Palapine'){%>
+      <div class="form-inline my-3">
+        <label for="nuimtaGerimai1" class="mr-3">Gėrimai, kurių kaina 1 &euro;, vnt</label>
+        <input type="number" class="form-control" name="nuimtaGerimai1" id="nuimtaGerimai1" step="1">
+      </div>
+      <div class="form-inline my-3">
+        <label for="nuimtaGerimai15" class="mr-3">Gėrimai, kurių kaina 1.7 &euro;, vnt</label>
+        <input type="number" class="form-control" name="nuimtaGerimai15" id="nuimtaGerimai15" step="1">
+      </div>
+      <div class="form-inline my-3">
+        <label for="nuimtaGerimai2" class="mr-3">Gėrimai, kurių kaina 2 &euro;, vnt</label>
+        <input type="number" class="form-control" name="nuimtaGerimai2" id="nuimtaGerimai2" step="1">
+      </div>
+      <div class="form-inline my-3">
+        <label for="nuimtaGerimai21" class="mr-3">Gėrimai, kurių kaina 2.2 &euro;, vnt</label>
+        <input type="number" class="form-control" name="nuimtaGerimai21" id="nuimtaGerimai21" step="1">
+      </div>
+      <div class="form-inline my-3">
+        <label for="nuimtaGerimai35" class="mr-3">Gėrimai, kurių kaina 3.5 &euro;, vnt</label>
+        <input type="number" class="form-control" name="nuimtaGerimai35" id="nuimtaGerimai35" step="1">
+      </div>
+      <% }%>
+      <% if (result[0].pavadinimas == 'Palapine'){%>
+      <div class="form-inline my-3">
+        <label for="nuimtaFasuoti1" class="mr-3">Fasuoti kaina 1.2 &euro;, vnt</label>
+        <input type="number" class="form-control" name="nuimtaFasuoti1" id="nuimtaFasuoti1" step="1">
+      </div>
+      <div class="form-inline my-3">
+        <label for="nuimtaFasuoti12" class="mr-3">Fasuoti kaina 1.4 &euro;, vnt</label>
+        <input type="number" class="form-control" name="nuimtaFasuoti12" id="nuimtaFasuoti12" step="1">
+      </div>
+      <div class="form-inline my-3">
+        <label for="nuimtaFasuoti15" class="mr-3">Fasuoti kaina 1.7 &euro;, vnt</label>
+        <input type="number" class="form-control" name="nuimtaFasuoti15" id="nuimtaFasuoti15" step="1">
+      </div>
+      <div class="form-inline my-3">
+        <label for="nuimtaFasuoti17" class="mr-3">Fasuoti kaina 1.9 &euro;, vnt</label>
+        <input type="number" class="form-control" name="nuimtaFasuoti17" id="nuimtaFasuoti17" step="1">
+      </div>
+      <div class="form-inline my-3">
+        <label for="nuimtaFasuoti2" class="mr-3">Fasuoti kaina 2.2 &euro;, vnt</label>
+        <input type="number" class="form-control" name="nuimtaFasuoti2" id="nuimtaFasuoti2" step="1">
+      </div>
+      <div class="form-inline my-3">
+        <label for="nuimtaFasuoti25" class="mr-3">Fasuoti kaina 2.7 &euro;, vnt</label>
+        <input type="number" class="form-control" name="nuimtaFasuoti25" id="nuimtaFasuoti25" step="1">
+      </div>
+      <% }%>
       <div class="form-inline my-3">
         <label for="pavadinimas" class="mr-3">Taškas</label>
         <select class="form-control" id="pavadinimas" name="pavadinimas">
@@ -318,6 +473,9 @@
             <% }%>
             <% if (result[0].pavadinimas == 'Sventes'){%>
             <option value="Sventes">Šventės</option>
+            <% }%>
+            <% if (result[0].pavadinimas == 'Palapine'){%>
+            <option value="Palapine">Palapinė</option>
             <% }%>
         </select>
       </div>
@@ -463,6 +621,74 @@
             <td><%= (Number(result.nuimta_pradziaFasuoti25) - Number(result.nuimtaFasuoti25))*2.5 %> &euro;</td>
           </tr>
           <% }%>
+          <% if (result.pavadinimas == 'Palapine'){%>
+            <tr>
+              <th scope="row">Gėrimai, kurių kaina 1 &euro;, vnt</th>
+              <td><%= result.nuimta_pradziaGerimai1 %></td>
+              <td><%= result.nuimtaGerimai1 %></td>
+              <td><%= (Number(result.nuimta_pradziaGerimai1) - Number(result.nuimtaGerimai1))*1 %> &euro;</td>
+            </tr>
+            <tr>
+              <th scope="row">Gėrimai, kurių kaina 1.7 &euro;, vnt</th>
+              <td><%= result.nuimta_pradziaGerimai15 %></td>
+              <td><%= result.nuimtaGerimai15 %></td>
+              <td><%= (Number(result.nuimta_pradziaGerimai15) - Number(result.nuimtaGerimai15))*1.7 %> &euro;</td>
+            </tr>
+            <tr>
+              <th scope="row">Gėrimai, kurių kaina 2 &euro;, vnt</th>
+              <td><%= result.nuimta_pradziaGerimai2 %></td>
+              <td><%= result.nuimtaGerimai2 %></td>
+              <td><%= (Number(result.nuimta_pradziaGerimai2) - Number(result.nuimtaGerimai2))*2 %> &euro;</td>
+            </tr>
+          <th scope="row">Gėrimai, kurių kaina 2.2 &euro;, vnt</th>
+            <td><%= result.nuimta_pradziaGerimai21 %></td>
+            <td><%= result.nuimtaGerimai21 %></td>
+            <td><%= (Number(result.nuimta_pradziaGerimai21) - Number(result.nuimtaGerimai21))*2.2 %> &euro;</td>
+          </tr>
+          <th scope="row">Gėrimai, kurių kaina 3.5 &euro;, vnt</th>
+            <td><%= result.nuimta_pradziaGerimai35 %></td>
+            <td><%= result.nuimtaGerimai35 %></td>
+            <td><%= (Number(result.nuimta_pradziaGerimai35) - Number(result.nuimtaGerimai35))*3.5 %> &euro;</td>
+          </tr>
+          <% }%>
+            <% if (result.pavadinimas == 'Palapine'){%>
+            <tr>
+              <th scope="row">Fasuoti kaina 1.2 &euro;, vnt</th>
+              <td><%= result.nuimta_pradziaFasuoti1 %></td>
+              <td><%= result.nuimtaFasuoti1 %></td>
+              <td><%= (Number(result.nuimta_pradziaFasuoti1) - Number(result.nuimtaFasuoti1))*1.2 %> &euro;</td>
+            </tr>
+            <tr>
+              <th scope="row">Fasuoti kaina 1.4 &euro;, vnt</th>
+              <td><%= result.nuimta_pradziaFasuoti12 %></td>
+              <td><%= result.nuimtaFasuoti12 %></td>
+              <td><%= (Number(result.nuimta_pradziaFasuoti12) - Number(result.nuimtaFasuoti12))*1.4 %> &euro;</td>
+            </tr>
+            <tr>
+              <th scope="row">Fasuoti kaina 1.7 &euro;, vnt</th>
+              <td><%= result.nuimta_pradziaFasuoti15 %></td>
+              <td><%= result.nuimtaFasuoti15 %></td>
+              <td><%= (Number(result.nuimta_pradziaFasuoti15) - Number(result.nuimtaFasuoti15))*1.7 %> &euro;</td>
+            </tr>
+            <tr>
+              <th scope="row">Fasuoti kaina 1.9 &euro;, vnt</th>
+              <td><%= result.nuimta_pradziaFasuoti17 %></td>
+              <td><%= result.nuimtaFasuoti17 %></td>
+              <td><%= (Number(result.nuimta_pradziaFasuoti17) - Number(result.nuimtaFasuoti17))*1.9 %> &euro;</td>
+            </tr>
+            <tr>
+              <th scope="row">Fasuoti kaina 2.2 &euro;, vnt</th>
+              <td><%= result.nuimta_pradziaFasuoti2 %></td>
+              <td><%= result.nuimtaFasuoti2 %></td>
+              <td><%= (Number(result.nuimta_pradziaFasuoti2) - Number(result.nuimtaFasuoti2))*2.2 %> &euro;</td>
+            </tr>
+            <tr>
+              <th scope="row">Fasuoti kaina 2.7 &euro;, vnt</th>
+              <td><%= result.nuimta_pradziaFasuoti25 %></td>
+              <td><%= result.nuimtaFasuoti25 %></td>
+              <td><%= (Number(result.nuimta_pradziaFasuoti25) - Number(result.nuimtaFasuoti25))*2.7 %> &euro;</td>
+            </tr>
+            <% }%>
         </tbody>
       </table>
       <span class="val"></span>
